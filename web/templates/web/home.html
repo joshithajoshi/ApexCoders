@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<style>
+        .home-container{
+                display: grid;
+                grid-template-columns: 2fr 2fr;
+        }
+</style>
+
+<h1>WELCOME TO APEX PORTAL</h1>
+<h2>LOGIN</h2>
+
+<div class="home-container">
+
+        <div>
+                <a href="{% url 'studentlogin' %}">Login as a student</a>
+        </div>
+        <div>
+                <a href="{% url 'teacherlogin' %}">Login as a teacher</a>
+        </div>
+</div>
+                
+
