@@ -53,7 +53,8 @@ On clicking the Existing coursepage, the teacher will be redirected to the Cours
 A teacher can delete courses by just clicking the delete link below the respective course where is redirects to the confirmation page. Which when is approved or agreed to delete the course will then delete the course and redirects to the teacherhome page.
 ![teacherhome](https://user-images.githubusercontent.com/111419098/204011456-4345966c-34ed-4807-bc36-a8ceef3c47c9.jpg)
 
-![createcourse](https://user-images.githubusercontent.com/111419098/204011963-a7b95249-8c8a-4ac1-a7ca-581f5464ee6a.jpg)
+![coursecreate](https://user-images.githubusercontent.com/111419098/204049493-ef3a5864-3c42-49be-be6c-925232a2d9fe.jpg)
+
 
 ##### Student HomePage
 
