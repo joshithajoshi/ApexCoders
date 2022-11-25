@@ -9,10 +9,10 @@ Key features of it include:
 1. User Login, Logout and Signup, Update profile
 2. Course Management
 3. Creating and deleting assignments
-4. Making Submissions and Grading Submissions and submission validation
-5. Seperate User-Interface for teachers and students
+4. Making Submissions and Grading Submissions and submission file validation
+5. **Seperate User-Interface** for teachers and students
 
-Explanation of the feature is as follows:
+Explanation of the features is as follows:
 
 #### User Login, Logout, Updating Profile and registration:
 When we start the server using the local host, the first page one encounters is the login page. Here one can login in using the credentials or signup.
@@ -25,7 +25,7 @@ One will never be able to bypass loginpage by directly entering the url. If trie
 ![profileupdate](https://user-images.githubusercontent.com/111419098/204012726-c037577c-df3d-491e-86ff-6a980182f9ae.jpg)
 
 
-The role of the user is differentiated while doing signup where the user would be able to choose whether he/she is enrolling as a teacher or a student. While login, the user enters only the username and password. The backend part searches for the user, checks if the user is a teacher or not and redirects the user to their respected homepage.\
+The role of the user is differentiated while doing signup where the user would be able to choose whether he/she is enrolling as a teacher or a student. While login, the user enters only the username and password. The backend part searches for the user, checks if the user is a teacher or not and redirects the user to their respected homepage.
 The user will be able to update their profile i.e, they will be able to change the password once they finished login to the homepage.
 
 While updating the profile, It is strongly advised **not to change** the role of the user
@@ -45,10 +45,12 @@ Teacher Homepage includes the fields:
 2. Logout
 3. Create Course
 4. Existing Courses
+5. Delete Course
 
 A teacher can create a course, delete a course and view the existing courses by clicking on them.
 While creating a course, the teacher should add atleast one student to the course and keeping that in mind, entering the remaining fields will successfully create a course and the teacher would be redirected to the teacherhomepage.
 On clicking the Existing coursepage, the teacher will be redirected to the Coursepage for the teacher.
+A teacher can delete courses by just clicking the delete link below the respective course where is redirects to the confirmation page. Which when is approved or agreed to delete the course will then delete the course and redirects to the teacherhome page.
 ![teacherhome](https://user-images.githubusercontent.com/111419098/204011456-4345966c-34ed-4807-bc36-a8ceef3c47c9.jpg)
 
 ![createcourse](https://user-images.githubusercontent.com/111419098/204011963-a7b95249-8c8a-4ac1-a7ca-581f5464ee6a.jpg)
@@ -70,8 +72,8 @@ On clicking the Courses in which he is already enrolled, he will be redirected t
 
 #### Coursepages:
 
-Student Coursepage displays all the assignments present which are related to this particular course
-On clicking on any assignment, redirects to the assignmentpage for students
+Student Coursepage displays all the assignments present which are related to this particular course.
+On clicking on any assignment, redirects to the assignmentpage for students.
 ![studentcoursepage](https://user-images.githubusercontent.com/111419098/204011610-cd2c4b98-a60c-4172-9667-ac4a6c4c3586.jpg)
 
 Teacher Coursepage displays all the assignments created by the teachers and a link to create an assignment.
@@ -108,7 +110,7 @@ The "grade" link in the bottom allows the teacher to grade and provide the feedb
 Our Django project name is trail2 and the app name is trailer
 
 1. So we need to traverse along the directory till the current directory and directory of manage.py are same.
-2. Then we need to run: "python3 manage.py runserver"
+2. Then we need to run: "python3 manage.py runserver" (actually based on your python version i.e, in lower versions of python we need to use python(ver) in place python3).
 3. Then copy the localhost address displayed in the terminal and paste it in the browser and then click search
 4. Done! Explore the website
 
