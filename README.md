@@ -9,7 +9,7 @@ Key features of it include:
 1. User Login, Logout and Signup, Update profile
 2. Course Management
 3. Creating and deleting assignments
-4. Making Submissions and Grading Submissions
+4. Making Submissions and Grading Submissions and submission validation
 5. Seperate User-Interface for teachers and students
 
 Explanation of the feature is as follows:
@@ -82,10 +82,13 @@ Teacher Coursepage also allows only teachers to delete an assigment by clicking 
 
 #### Assignment pages:
 
-Student assignmentpage will provide the link to download the problem statement or whichever file the teacher uploaded regarding the assignment and provide a link to make a submission for the assignment where he is required to upload a file give the uploaded file a name.
-The grades and the feedback will be displayed on the page below the submission link. The default values of the grade and feedback will be displayed if the assignment is not yet graded. 
+Student assignmentpage will provide the link to download the problem statement or whichever file the teacher uploaded regarding the assignment and provide a link to make a submission for the assignment where he is required to upload a file and give the uploaded file a name.
+The grades and the feedback will be displayed on the page below the submission link. The default values of the grade and feedback will be displayed if the assignment is not yet graded.
+Student can only submit ".zip, .tgz, .tar.gz" types of files
+
 ![studentassignment](https://user-images.githubusercontent.com/111419098/204012244-3ba1211a-97d2-45d5-8642-1a457a52afa4.jpg)
 ![createsubmission](https://user-images.githubusercontent.com/111419098/204012326-ea5c4712-5429-4a6d-bbb7-9ac20cbce411.jpg)
+![validation](https://user-images.githubusercontent.com/111419098/204023660-37801ea6-bf67-4130-af03-0d43b168b6f9.jpg)
 
 Teacher assignmentpage will also have a link to download the problem statement.
 Below the link is where the links to all the submissions made for this assignment shows up.On clicking the submission links, then redirects to the submission page where the teacher can grade the submission.
@@ -99,6 +102,29 @@ The "grade" link in the bottom allows the teacher to grade and provide the feedb
 
 ![teachersubmission](https://user-images.githubusercontent.com/111419098/204012385-814fffe1-7b1f-47f5-b785-6baf8120df6c.jpg)
 ![grade](https://user-images.githubusercontent.com/111419098/204012401-b2861544-dfb4-4936-a5d5-34b6013bb9fb.jpg)
+
+
+### Running the code:
+Our Django project name is trail2 and the app name is trailer
+
+1. So we need to traverse along the directory till the current directory and directory of manage.py are same.
+2. Then we need to run: "python3 manage.py runserver"
+3. Then copy the localhost address displayed in the terminal and paste it in the browser and then click search
+4. Done! Explore the website
+
+### Contributions:
+#### 210050033:
+1. Login and Registration
+2. Stylising 
+
+#### 210050134:
+1. Courses and Assignments
+2. Sphinx Documentation
+
+#### 210060162:
+1. Models, Forms
+2. Student submission, grading
+3. Readme.md
 
 
 
