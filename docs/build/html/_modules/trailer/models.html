@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>trailer.models &mdash; trail2  documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> trail2
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">trail2</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">trail2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>trailer.models</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for trailer.models</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">PermissionsMixin</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">AbstractBaseUser</span><span class="p">,</span> <span class="n">BaseUserManager</span>
+<span class="kn">from</span> <span class="nn">django.db.models.deletion</span> <span class="kn">import</span> <span class="n">CASCADE</span>
+
+<div class="viewcode-block" id="MyAccountManager"><a class="viewcode-back" href="../../trailer.html#trailer.forms.MyAccountManager">[docs]</a><span class="k">class</span> <span class="nc">MyAccountManager</span><span class="p">(</span><span class="n">BaseUserManager</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        | :func:`create_user`</span>
+<span class="sd">        | :func:`create_superuser`</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+<div class="viewcode-block" id="MyAccountManager.create_user"><a class="viewcode-back" href="../../trailer.html#trailer.forms.MyAccountManager.create_user">[docs]</a>        <span class="k">def</span> <span class="nf">create_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">is_teacher</span><span class="p">,</span><span class="n">is_superuser</span><span class="p">):</span>
+                <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">                creates an account as specified(teacher or student)</span>
+
+
+<span class="sd">                :param self: self</span>
+<span class="sd">                :type self: self</span>
+<span class="sd">                :param password: password field</span>
+<span class="sd">                :type password: string</span>
+<span class="sd">                :param username: name of the user</span>
+<span class="sd">                :type username: string</span>
+<span class="sd">                :param is_teacher: true if user is teacher</span>
+<span class="sd">                :type is_teacher: bool</span>
+
+<span class="sd">                &quot;&quot;&quot;</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">username</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Please enter username&quot;</span><span class="p">)</span>
+                <span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">username</span> <span class="o">=</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">,</span><span class="n">is_teacher</span><span class="o">=</span><span class="n">is_teacher</span><span class="p">,</span><span class="n">is_superuser</span><span class="o">=</span><span class="n">is_superuser</span><span class="p">)</span>
+                <span class="n">user</span><span class="o">.</span><span class="n">set_password</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
+                <span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">using</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_db</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">user</span></div>
+        
+<div class="viewcode-block" id="MyAccountManager.create_superuser"><a class="viewcode-back" href="../../trailer.html#trailer.forms.MyAccountManager.create_superuser">[docs]</a>        <span class="k">def</span> <span class="nf">create_superuser</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">is_teacher</span><span class="p">):</span>
+                <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">                creates a superuser(admin)</span>
+
+<span class="sd">                :param self: self</span>
+<span class="sd">                :type self: self</span>
+<span class="sd">                :param username: name of the user</span>
+<span class="sd">                :type username: string</span>
+<span class="sd">                :param password: password field</span>
+<span class="sd">                :type password: string</span>
+<span class="sd">                :param is_teacher: true if user is teacher</span>
+<span class="sd">                :type is_teacher: bool</span>
+<span class="sd">                </span>
+<span class="sd">                &quot;&quot;&quot;</span>
+                <span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">,</span><span class="n">is_teacher</span><span class="o">=</span><span class="n">is_teacher</span><span class="p">,</span><span class="n">is_superuser</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+                <span class="n">user</span><span class="o">.</span><span class="n">set_password</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
+                <span class="n">user</span><span class="o">.</span><span class="n">is_teacher</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="n">user</span><span class="o">.</span><span class="n">is_admin</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">user</span><span class="o">.</span><span class="n">is_staff</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">user</span><span class="o">.</span><span class="n">is_superuser</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+                <span class="k">return</span> <span class="n">user</span></div></div>
+
+<div class="viewcode-block" id="Account"><a class="viewcode-back" href="../../trailer.html#trailer.forms.Account">[docs]</a><span class="k">class</span> <span class="nc">Account</span><span class="p">(</span><span class="n">AbstractBaseUser</span><span class="p">,</span> <span class="n">PermissionsMixin</span><span class="p">):</span>
+
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Custom user model </span>
+
+<span class="sd">        :param AbstractBaseUser: default</span>
+<span class="sd">        :param PermissionsMixin: default</span>
+<span class="sd">        :fieldname: username</span>
+<span class="sd">        :fieldname: is_teacher</span>
+<span class="sd">        :username: name of the user</span>
+<span class="sd">        :is_teacher: true if user is teacher and else false</span>
+<span class="sd">        :is_admin: true if user is admin and else false</span>
+<span class="sd">        :is_active: true if user is active and else false</span>
+<span class="sd">        :is_staff: true if user is staff and else false</span>
+<span class="sd">        :is_superuser: true if user is admin and else false</span>
+<span class="sd">        :date_joined: date and time of joining of the user</span>
+<span class="sd">        :last_login: date and time of last login of the user</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">username</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">date_joined</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">verbose_name</span><span class="o">=</span><span class="s1">&#39;date joined&#39;</span><span class="p">,</span> <span class="n">auto_now_add</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">last_login</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">verbose_name</span><span class="o">=</span><span class="s1">&#39;last login&#39;</span><span class="p">,</span> <span class="n">auto_now</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">is_teacher</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span> <span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">is_admin</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">is_active</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">is_staff</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">is_superuser</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="n">USERNAME_FIELD</span> <span class="o">=</span> <span class="s1">&#39;username&#39;</span>
+        <span class="n">REQUIRED_FIELDS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;is_teacher&#39;</span><span class="p">]</span>
+
+        <span class="n">objects</span> <span class="o">=</span> <span class="n">MyAccountManager</span><span class="p">()</span>
+
+        <span class="k">def</span> <span class="nf">_str_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span></div>
+
+
+
+
+
+<div class="viewcode-block" id="Course"><a class="viewcode-back" href="../../trailer.html#trailer.forms.Course">[docs]</a><span class="k">class</span> <span class="nc">Course</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        course model </span>
+<span class="sd">        defines host,participants,joincode,name of the course for a particular course</span>
+
+<span class="sd">        :name: name of the course</span>
+<span class="sd">        :host: host model</span>
+<span class="sd">        :partipants: students enrolled to a particular course model</span>
+<span class="sd">        :joincode: code required to register for a course</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">host</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Account</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="o">.</span><span class="n">CASCADE</span><span class="p">,</span> <span class="n">related_name</span> <span class="o">=</span> <span class="s2">&quot;host&quot;</span><span class="p">)</span>
+        <span class="n">partipants</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Account</span><span class="p">,</span> <span class="n">related_name</span> <span class="o">=</span> <span class="s2">&quot;participants&quot;</span><span class="p">)</span>
+        <span class="n">joincode</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">default</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        
+
+        <span class="k">def</span> <span class="nf">_str_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span></div>
+
+<div class="viewcode-block" id="Assignment"><a class="viewcode-back" href="../../trailer.html#trailer.forms.Assignment">[docs]</a><span class="k">class</span> <span class="nc">Assignment</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Assignment model</span>
+<span class="sd">        defines name of the assignment,name of the problem statement,problem statement file,course model</span>
+
+<span class="sd">        :name: name of the assignment</span>
+<span class="sd">        :file_name: problem statement file name</span>
+<span class="sd">        :assignfile: submitted problem statement file by the teacher</span>
+<span class="sd">        :course: course model</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">file_name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span> <span class="s1">&#39;assignment_file&#39;</span><span class="p">)</span>
+        <span class="n">assignfile</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FileField</span><span class="p">(</span><span class="n">upload_to</span> <span class="o">=</span><span class="s1">&#39;assignments&#39;</span><span class="p">,</span> <span class="n">blank</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="n">course</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Course</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="o">.</span><span class="n">CASCADE</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">_str_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span></div>
+
+<div class="viewcode-block" id="Submission"><a class="viewcode-back" href="../../trailer.html#trailer.forms.Submission">[docs]</a><span class="k">class</span> <span class="nc">Submission</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Submission model</span>
+<span class="sd">        defines student model,submitted file by a particular student,name of the file recieved from the student,assignment model,feedback recieved to a student from techer,grade recieved to a student</span>
+<span class="sd">        </span>
+<span class="sd">        :student: student model</span>
+<span class="sd">        :subfile: submitted file</span>
+<span class="sd">        :file_name: name of the submitting file</span>
+<span class="sd">        :assignment: assignment model</span>
+<span class="sd">        :feedback: comments from teacher </span>
+<span class="sd">        :grade: grade from teacher </span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">student</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Account</span><span class="p">,</span><span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="o">.</span><span class="n">CASCADE</span><span class="p">)</span>
+        <span class="n">subfile</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FileField</span><span class="p">(</span><span class="n">upload_to</span><span class="o">=</span><span class="s1">&#39;submissions&#39;</span><span class="p">,</span><span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">file_name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="s1">&#39;submission&#39;</span><span class="p">)</span>
+        <span class="n">assignment</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Assignment</span><span class="p">,</span><span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="o">.</span><span class="n">CASCADE</span><span class="p">)</span>
+        <span class="n">feedback</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;Feedback yet to be updated&#39;</span><span class="p">)</span>
+        <span class="n">grade</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">default</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">_str_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">student</span><span class="o">.</span><span class="n">username</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_name</span> <span class="o">+</span><span class="s2">&quot;&quot;</span><span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">assignment</span><span class="o">.</span><span class="n">name</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, 210050033 210050134 210050162.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
