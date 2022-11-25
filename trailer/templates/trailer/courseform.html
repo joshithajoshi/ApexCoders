@@ -1,0 +1,19 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<style>
+.xyz{
+        background-color: lightgrey;
+        width: 700px;
+        padding: 50px;
+        margin: 20px; 
+        position: absolute;
+}
+</style> 
+<h1>&nbsp;&nbsp;&nbsp;Course Creation</h1>
+<div class="xyz">
+        <form method = "POST" action="" >
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="Submit" value="Submit" />
+        </form>  
+</div>

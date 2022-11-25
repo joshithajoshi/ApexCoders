@@ -1,0 +1,25 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<style>
+        
+        h1{     
+                background-color: black;
+                color: aliceblue;
+                text-align: center;
+                font-style:var(#37423b);
+                font-size:xx-large;
+        }
+        </style>
+<h1>Enter grades and Feedback</h1>
+
+<div class="container">
+        <form method="POST" action="">
+                {% csrf_token %}
+                <br/>
+                <label for="grades"><b>Grade:</b></label>
+                <input type="number" placeholder="Enter Grade" name="grades"/><br/><br/>
+                <label for="feedback"><b>Feedback:</b></label>
+                <input type="text" placeholder="Enter Feedback" name="feedback"/><br/><br/>
+                <input type = "submit" value="Upload" />
+        </form>
+</div>

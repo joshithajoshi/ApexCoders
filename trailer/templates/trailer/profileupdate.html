@@ -1,0 +1,22 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<style>
+        h1{
+                border-bottom: 2px solid black;
+                width: fit-content;
+        }
+    .container{
+            background-color: lightgrey;
+            width: 1000px;  
+            padding: 50px;
+            margin: 20px; 
+    }
+</style>
+<h1>Update Profile</h1>
+<div class="container" >
+<form method="POST" action="">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type = "submit" value="Submit"/>
+</form>
+</div>

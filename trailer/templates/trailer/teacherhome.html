@@ -1,0 +1,72 @@
+<head>
+<style>
+        .home-container {
+        
+                display: grid;
+                grid-template-columns: 1fr 3fr;
+        }
+        .home-container h3{
+                
+                height: 40px;
+                width: 100px;
+                border: 4px solid gray;
+                border-radius: 5px ;
+                background:lightsalmon;
+                font-weight: 800;
+                font-size: 30px; 
+                padding: 7px 14px;
+                color: #fff;
+                margin: 0;
+        }
+        .home-container h3 a {
+
+        color: black;
+        transition: 0.3s;
+        }
+        
+        .GFG {
+            background-color: white;
+            border: 2px solid black;
+            color: green;
+            padding: 5px 10px;
+            text-align: center;
+            display: inline-block;
+            font-size: 20px;
+            margin: 10px 0px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+</style>
+</head>
+<body>
+<div>
+
+        <div>
+                <div>
+                <a href="{% url 'profileupdate' vary %}" class="GFG">Update Profile</a> 
+                </div>
+                <div>
+                        <a href="{% url 'logoutuser' %}" class="GFG">Logout</a>
+                </div>
+
+        </div>
+        <div>
+                
+                <a href = {% url 'courseform' %} class="GFG">Create Course</a>
+                <h2>Courses Created</h2>
+                <div class="home-container">
+                        <div>
+                        {% for course in courses %}
+                        <div>
+                                {% if request.user == course.host %}<br/>
+                                <h3><a href="{% url 'coursepage' course.name %}">{{course.name}}</a></h3>
+                                <a href="{% url 'coursedelete' course.name %}">Delete</a>
+                                {% endif %}
+                        </div>
+                        {% endfor %}
+                        </div>
+                </div>
+        </div>
+</div>
+</body>

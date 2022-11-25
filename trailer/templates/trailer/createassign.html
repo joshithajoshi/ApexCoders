@@ -1,0 +1,36 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+<style>
+        form{
+                border: 2px solid navy;
+                border-radius: 7px;
+                height: 300px;
+                width: 600px;
+                background-color:lightyellow;
+        }
+        h1{
+                color:navy;
+                border-bottom: 2px solid black;
+                width: fit-content;
+        }
+</style>
+<center>
+<h1>Create an assignment</h1>
+
+<div>
+        <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <br/>
+                <label for="name"><b>ASSIGNMENT NAME</b></label>
+                <input type="text" placeholder="Name" name="assignname"/><br/><br/>
+                <label for="file_name"><b>Filename</b></label>
+                <input type="text" placeholder="Filename" name="file_name"/><br/><br/>
+                <label for="assignfile"><b>FILE</b></label>
+                <input type="file" placeholder="File" name="assignfile"/><br/><br/>
+                <input type = "submit" value="Submit"/>
+                <br/>
+        </form>
+        
+</div>
+</center>

@@ -1,0 +1,34 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<style>
+        h1{
+                border-bottom: 2px solid black;
+                width: fit-content;
+                color:royalblue;
+        }
+        .container{
+                font-family:Verdana, Geneva, Tahoma, sans-serif;
+                width: 700px;
+                border: 2px solid black;
+                background-color:aliceblue;
+                border-radius: 7px;
+        }
+</style>
+<center>
+<h1>{{assign.name}}</h1>
+
+<div class="container">
+        
+<div>
+        <h2>Problem Statement:<a href="{{assign.assignfile.url}}" download>download</a></h2>
+</div>
+<div>
+        <h2><a href="{% url 'createsub' assign.name %}">Submit solution</a></h2>
+</div>
+<div>
+        <h3>Grade:{{submiss.grade}}</h3>
+        <h3>Feedback:{{submiss.feedback}}</h3>
+</div>
+
+</div>
+</center>

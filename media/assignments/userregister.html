@@ -1,0 +1,17 @@
+<h2>WELCOME 2</h2>
+
+<div>
+        <div>
+                <a href="#">Already have an account?</a>
+                <a href="{% url 'loginPage' %}">Sign In</a>
+        </div>
+</div>
+
+<div>
+        <form method="POST" action="">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" value="Register" />
+        </form>
+</div>
+

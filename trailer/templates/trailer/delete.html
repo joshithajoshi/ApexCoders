@@ -1,0 +1,10 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<form method = "POST" action="">
+        {% csrf_token%}
+        <br/>
+        <p>&nbsp;&nbsp;&nbsp;Are you sure you want to delete "{{obj.name}}"?</p>
+        
+        &nbsp;&nbsp;&nbsp;<a href = {{request.META.HTTP_REFERER}}>Go Back</a>
+        <input type = "submit" values="Confirm" />
+</form>

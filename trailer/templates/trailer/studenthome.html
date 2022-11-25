@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<style>
+        
+.container {
+        
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+}
+.container h3{
+        
+        height: 40px;
+        width: 100px;
+        border: 4px solid gray;
+        border-radius: 5px ;
+        background:lightsalmon;
+        font-weight: 800;
+        font-size: 30px; 
+        padding: 7px 14px;
+        color: #fff;
+        margin: 0;
+}
+.container h3 a {
+
+  color:black;
+  transition: 0.3s;
+}
+
+.GFG {
+            background-color: white;
+            border: 2px solid black;
+            color: green;
+            padding: 5px 10px;
+            text-align: center;
+            display: inline-block;
+            font-size: 20px;
+            margin: 10px 0px;
+            cursor: pointer;
+        }
+    
+
+</style>
+
+        <div class="container">
+
+                <div>
+                        <div>
+                        <a href="{% url 'profileupdate' vary %}" class="GFG">Update Profile</a>
+                        </div>
+                        <div>
+                                <a href="{% url 'logoutuser' %}" class="GFG">Logout</a>
+                        </div>
+                </div>
+                <br/>
+                <div>
+                           <h2><a href="{% url 'coursereg' %}">Register for a Course</a></h2>
+
+                               
+                                        {% for course in courses %}
+                                        <div>
+                                               {% for partipants in course.partipants.all %}
+                                                {% if partipants == request.user %}
+                                                <h3><a href="{% url 'studentcourse' course.name %}">{{course.name}}</a></h3><br/>
+                                                {% endif %}
+                                                {% endfor %}
+                                                {% comment %} {{temp.name}} {% endcomment %}
+                                        </div>
+                                        {% endfor %}
+                                
+                </div>
+        </div>
